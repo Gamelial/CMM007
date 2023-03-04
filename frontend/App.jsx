@@ -7,8 +7,8 @@ import {
   AdminStory,
   AdminReaderList,
   AdminWriterList,
-} from "./components";
-import { Login, Signup, WriterDashboard, AdminDashboard, Home } from "./pages";
+} from "./src/components";
+import { Login, Signup, WriterDashboard, AdminDashboard, Home } from "./src/pages";
 import { ReaderLayout, WriterLayout, AdminLayout } from "./layouts";
 
 function App() {
