@@ -1,3 +1,3 @@
-export { default as WriterLayout } from "./WriterLayout";
-export { default as ReaderLayout } from "./ReaderLayout";
+export { default as StoryTellerLayout } from "./StoryTellerLayout";
+export { default as SeekerLayout } from "./SeekerLayout";
 export { default as AdminLayout } from "./AdminLayout";

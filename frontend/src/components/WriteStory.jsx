@@ -1,8 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import axios from "axios";
+import { useAuthHeader } from "react-auth-kit";
+
+const api = import.meta.env.VITE_APP_BACKEND_URL;
 
 const WriteStory = () => {
+  const authHeader = useAuthHeader();
+
   const [wordCount, setWordCount] = useState(null);
   const [charCount, setCharCount] = useState(null);
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [category, setCategory] = useState("");
+  const [location, setLocation] = useState("");
+  const [image, setImage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+
+  const postStory = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        `${api}/stories/`,
+        {
+          title: title,
+          body: body,
+          location: location,
+          views: 0,
+          category: category,
+          image: image,
+        },
+        {
+          headers: {
+            Accept: "*/*",
+            "Content-Type": "multipart/form-data",
+            Authorization: authHeader(),
+          },
+        }
+      );
+      setLoading(false);
+      setSuccessMessage(response.data.message);
+      setTimeout(() => {
+        setSuccessMessage(null);
+        window.location.reload();
+      }, 3000);
+    } catch (error) {
+      setLoading(false);
+      setErrorMessage(error.message);
+      setInterval(() => {
+        setErrorMessage(null);
+      }, 3000);
+    }
+  };
 
   function countWords(evt) {
     // Word Count
@@ -24,47 +75,72 @@ const WriteStory = () => {
     <div className="flex items-center justify-center bg-white shadow-sm rounded-lg w-[90%] lg:w-3/4 m-auto mt-10 p-4 px-6">
       <div className="font-poppins w-full">
         <div className="text-xl lg:text-2xl font-semibold">
-          <div className="flex gap:2 lg:gap-4 items-center">
-            <h2 className="text-slate-900">New Story</h2>
+          <div className="flex gap-2 lg:gap-4 items-center">
+            <h2 className="text-slate-900">New Story</h2>{" "}
+            {errorMessage && (
+              <h2 className="text-red-500 text-xl">{errorMessage}</h2>
+            )}{" "}
+            {successMessage && (
+              <h2 className="text-green-500 text-xl">{successMessage}</h2>
+            )}
           </div>
         </div>
-
         <form
-          action=""
           className="grid  grid-cols-1 lg:grid-cols-2 gap-2 lg:gap-4 p-4"
+          onSubmit={postStory}
+          encType="multipart/form-data"
         >
           <div className="flex flex-col gap-2 lg:gap-4">
             <input
               type="text"
+              name="title"
               placeholder="Story Title"
               className="p-2 rounded-md border-[1px] w-full lg:w-[100%] outline-none"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
             <input
               type="text"
+              name="location"
               placeholder="Location"
               className="p-2 rounded-md border-[1px] w-full lg:w-[100%] outline-none"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
             />
             <input
               type="text"
               placeholder="Category"
               className="p-2 rounded-md border-[1px] w-full lg:w-[100%] outline-none"
+              name="category"
+              onChange={(e) => {
+                setCategory(e.target.value);
+              }}
             />
             <input
               type="file"
               accept="image/*"
               className="p-2 rounded-md border-[1px] w-full lg:w-[100%] outline-none"
+              name="image"
+              onChange={(e) => {
+                console.log(e.target.files[0]);
+                setImage(e.target.files[0]);
+              }}
             />
           </div>
           <div className="flex flex-col gap-2 lg:gap-4">
             <div>
               <textarea
-                name=""
+                name="body"
                 id=""
                 cols="10"
                 rows="9"
                 placeholder="Write Story: Lorem ipsum dolor sit amet..."
                 className="p-2 rounded-md border-[1px] w-full lg:w-[100%] outline-none"
-                onChange={(e) => countWords(e)}
+                value={body}
+                onChange={(e) => {
+                  countWords(e);
+                  setBody(e.target.value);
+                }}
               ></textarea>
               <div className="flex items-center gap-4">
                 {wordCount && (
@@ -83,7 +159,7 @@ const WriteStory = () => {
 
             <div>
               <button className="rounded-full px-3 py-1 flex items-center gap-2 text-sm bg-slate-800 text-slate-100 hover:bg-slate-100 hover:text-slate-800">
-                Add New Story
+                {!loading ? "Publish Story" : "Publishing..."}
               </button>
             </div>
           </div>

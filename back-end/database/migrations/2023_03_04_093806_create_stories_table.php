@@ -18,9 +18,10 @@ class CreateStoriesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
-            $table->integer('views');
+            $table->integer('views')->default(0)->nullable();
             $table->text('body');
             $table->string('location');
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

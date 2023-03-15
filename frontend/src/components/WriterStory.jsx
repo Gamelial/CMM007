@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const Story = () => {
+const WriterStory = () => {
   let navigate = useNavigate();
   const { id } = useParams();
 
@@ -18,9 +18,7 @@ const Story = () => {
       let data = response.data.data;
 
       setStory(data.story);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -74,4 +72,4 @@ const Story = () => {
   );
 };
 
-export default Story;
+export default WriterStory;

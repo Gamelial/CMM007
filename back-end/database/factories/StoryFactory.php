@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\User;
 
 class StoryFactory extends Factory
 {
@@ -16,11 +15,12 @@ class StoryFactory extends Factory
     {
         return [
             'user_id' => rand(1, 10),
-            // 'user_id' => User::factory(),
             'title' => $this->faker->sentence(),
-            'views' => rand(1, 100),
+            'views' => rand(1, 200),
             'body' => $this->faker->text(1000),
             'location' => $this->faker->country(),
+            'image' => $this->faker->imageUrl(),
+            'category_id' => rand(1, 10)
         ];
     }
 }

@@ -3,15 +3,13 @@ import { NavLink } from "react-router-dom";
 import {
   UilEstate,
   UilCommentHeart,
-  UilBookReader,
   UilEditAlt,
 } from "@iconscout/react-unicons";
 
 const routes = [
   { id: 1, name: "Home", route: "/admin", icon: UilEstate },
   { id: 2, name: "Stories", route: "/admin/stories/", icon: UilCommentHeart },
-  { id: 3, name: "Readers", route: "/admin/readers/", icon: UilBookReader },
-  { id: 4, name: "Writers", route: "/admin/writers/", icon: UilEditAlt },
+  { id: 3, name: "Writers", route: "/admin/writers/", icon: UilEditAlt },
 ];
 
 const AdminNav = () => {
@@ -19,7 +17,7 @@ const AdminNav = () => {
     <div className="flex justify-between">
       <div className="flex gap-3 md:gap-5 lg:gap-10 items-center font-poppins font-semibold text-slate-600">
         {routes.map((route) => (
-          <div key={route.id} className="flex gap-2 items-center">
+          <div key={route.id} className="flex gap-2 items-center text-xs">
             <NavLink
               className={({ isActive }) =>
                 isActive

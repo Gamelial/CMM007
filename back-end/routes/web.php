@@ -17,5 +17,3 @@ use App\Http\Controllers\StoryController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/stories', [StoryController::class, 'index']);
-Route::get('/stories/{id}', [StoryController::class, 'show']);

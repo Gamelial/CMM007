@@ -1,30 +1,87 @@
-import React from "react";
-import { UilSignOutAlt, UilUserCircle } from "@iconscout/react-unicons";
-import { useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { UilSignOutAlt } from "@iconscout/react-unicons";
+import { useLocation, Link } from "react-router-dom";
+import { useAuthHeader, useIsAuthenticated, useSignOut } from "react-auth-kit";
+import axios from "axios";
+
+const api = import.meta.env.VITE_APP_BACKEND_URL;
 
 const TopBar = ({ admin }) => {
-  let location = useLocation();
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
 
+  let location = useLocation();
+  const authHeader = useAuthHeader();
+
+  const isAuthenticated = useIsAuthenticated();
+
+  const signOut = useSignOut();
+
+  const handleLogOut = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        `${api}/logout`,
+        {},
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: authHeader(),
+          },
+        }
+      );
+
+      setLoading(false);
+      setSuccessMessage(response.data.message);
+
+      setInterval(() => {
+        setSuccessMessage(null);
+        signOut();
+        window.location.href = "/";
+      }, 3000);
+    } catch (error) {
+      setLoading(false);
+      setErrorMessage(error.message);
+
+      setInterval(() => {
+        setErrorMessage(null);
+      }, 3000);
+    }
+  };
   return (
     <div className="h-20 w-full flex justify-between items-center p-4 bg-white shadow-sm">
       <div className="font-ubuntu font-bold text-2xl md:text-3xl lg:text-4xl">
         Story{" "}
         {!admin
           ? location.pathname.includes("writer")
-            ? "Writer"
-            : "Reader"
+            ? "Teller"
+            : "Seeker"
           : "Admin"}
       </div>
-      <ul className="flex items-center gap-3">
-        <li>
-          <button className="rounded-full px-3 py-1 flex items-center gap-2 text-sm border-[1px] border-slate-600 hover:bg-slate-100">
+      {isAuthenticated() ? (
+        <ul className="flex items-center gap-3">
+          <button disabled={loading} className="btn" onClick={handleLogOut}>
             <UilSignOutAlt className="h-5 w-5" /> Logout
           </button>
-        </li>
-        <li>
-          <UilUserCircle className="h-10 w-10 hover:text-slate-500 cursor-pointer" />
-        </li>
-      </ul>
+        </ul>
+      ) : (
+        <div className="flex items-center gap-3">
+          <Link
+            to="/login"
+            className="bg-indigo-500 text-white px-6 py-2 rounded-full hover:bg-indigo-300"
+          >
+            Login
+          </Link>
+          <Link
+            to="/register"
+            className="bg-yellow-100 text-black px-6 py-2 rounded-full hover:bg-indigo-300"
+          >
+            Register
+          </Link>
+        </div>
+      )}
     </div>
   );
 };
