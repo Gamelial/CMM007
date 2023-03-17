@@ -52,7 +52,7 @@ const TopBar = () => {
   return (
     <div className="h-20 w-full flex justify-between items-center p-4 bg-white shadow-sm">
       <div className="font-ubuntu font-bold text-2xl md:text-3xl lg:text-4xl">
-        G Story Web
+        G-Web Stories
       </div>
       {isAuthenticated() ? (
         <ul className="flex items-center gap-3">
