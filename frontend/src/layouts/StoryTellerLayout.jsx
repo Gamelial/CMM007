@@ -21,7 +21,7 @@ const navList = [
 
 const WriterLayout = () => {
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <div className="bg-gradient-to-br from-indigo-50 to-indigo-200 min-h-screen">
       <TopBar />
       <div className="min-h-screen p-4 lg:p-4">
         <ul className="flex items-center gap-4 font-semibold">

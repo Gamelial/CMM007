@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 const ReaderDashboard = () => {
   return (
-    <div className="bg-slate-50 min-h-screen">
+    <div className="bg-gradient-to-br from-indigo-50 to-indigo-200 min-h-screen">
       <TopBar />
       <div className="min-h-screen lg:p-4">
         <Outlet />

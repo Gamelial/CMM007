@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { UilSignOutAlt } from "@iconscout/react-unicons";
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuthHeader, useIsAuthenticated, useSignOut } from "react-auth-kit";
 import axios from "axios";
 
 const api = import.meta.env.VITE_APP_BACKEND_URL;
 
-const TopBar = ({ admin }) => {
+const TopBar = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null);
 
-  let location = useLocation();
   const authHeader = useAuthHeader();
 
   const isAuthenticated = useIsAuthenticated();
@@ -53,12 +52,7 @@ const TopBar = ({ admin }) => {
   return (
     <div className="h-20 w-full flex justify-between items-center p-4 bg-white shadow-sm">
       <div className="font-ubuntu font-bold text-2xl md:text-3xl lg:text-4xl">
-        Story{" "}
-        {!admin
-          ? location.pathname.includes("writer")
-            ? "Teller"
-            : "Seeker"
-          : "Admin"}
+        G Story Web
       </div>
       {isAuthenticated() ? (
         <ul className="flex items-center gap-3">
