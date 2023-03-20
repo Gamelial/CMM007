@@ -56,7 +56,7 @@ const TopBar = () => {
       </div>
       {isAuthenticated() ? (
         <ul className="flex items-center gap-3">
-          <button disabled={loading} className="btn" onClick={handleLogOut}>
+          <button disabled={loading} className="btn flex px-4 items-center gap-3 border-[2px] border-black rounded-full" onClick={handleLogOut}>
             <UilSignOutAlt className="h-5 w-5" /> Logout
           </button>
         </ul>
