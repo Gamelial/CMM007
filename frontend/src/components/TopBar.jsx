@@ -38,7 +38,7 @@ const TopBar = () => {
       setInterval(() => {
         setSuccessMessage(null);
         signOut();
-        window.location.href = "/";
+        window.location.href = "/login";
       }, 3000);
     } catch (error) {
       setLoading(false);
