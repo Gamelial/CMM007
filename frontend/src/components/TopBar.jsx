@@ -46,7 +46,7 @@ const TopBar = () => {
 
       setInterval(() => {
         setErrorMessage(null);
-      }, 3000);
+      }, 3000); 
     }
   };
   return (
@@ -54,7 +54,7 @@ const TopBar = () => {
       <div className="font-ubuntu font-bold text-2xl md:text-3xl lg:text-4xl">
         G-Web Stories
       </div>
-      {isAuthenticated() ? (
+      {isAuthenticated() ? (   
         <ul className="flex items-center gap-3">
           <button disabled={loading} className="btn flex px-4 items-center gap-3 border-[2px] border-black rounded-full" onClick={handleLogOut}>
             <UilSignOutAlt className="h-5 w-5" /> Logout
