@@ -2,7 +2,7 @@
 This is a software application that enables story seekers to from all over the world to visit and read stories. 
 Storytellers from any part of the world can also register and publish story, and has an Admin with priviledge over all stories and storytellers' profile.
 
-## Setting up story-teller front end 
+## Setting up Story-Teller Front End 
 1. Clone git repo using `git clone repoUrl`
 2. `cd repoDir`
 3. Access `.env` file change VITE_APP_BASE_URL=`server_url_of_backend/api` 

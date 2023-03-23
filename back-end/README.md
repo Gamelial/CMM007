@@ -1,4 +1,4 @@
-## Backend of G-story web
+## Backend of G-Story Web
 
 This is a software application that enables story seekers to from all over the world to visit and read stories. 
 Storytellers from any part of the world can also register and publish story, and has an Admin with priviledge over all stories and storytellers' profile.
@@ -23,7 +23,7 @@ Now that  we have cloned our repo and entered inside our backend directory, we'l
 9. Access your database `story-teller` using phpmyadmin or any  other database client, on table `users`.
 10. You can create an admin user by creating a new user, and assigning the `type` as `admin`.
 
-## Setting up story-teller front end 
+## Setting up Story-Teller Front End 
 
 1. Clone git repo using `git clone repoUrl`
 2. `cd repoDir`
