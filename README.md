@@ -14,7 +14,7 @@ Now that  we have cloned our repo and entered inside our backend directory, we'l
 
 1. Make sure that your database service is running, 
 2. Create a new database and take note of the name.
-3. Locate the `.env` file in our project root, fill up the database section using the data from the new database that you created. 
+3. Locate the `.env` file in our project root, fill up the database section using the data from the new    database that you created. 
 4. Run our migrations to prepare our database tables `php artisan migrate`
 5. Run the Database seed to generate test data for our application `php artisan db:seed`
 6. Link `storage` directory to `public`  by running `php artisan storage:link` 
@@ -32,7 +32,7 @@ Now that  we have cloned our repo and entered inside our backend directory, we'l
 
 ## Note 
 1. You can create a new user account, login, write and publish stories.
-You can also copy user emails from the database, all password is defaulted to `password` 
+   You can also copy user emails from the database, all password is defaulted to `password` 
 2. You can also create an admin user by setting the table `type` to `admin`
 
 ## Library Used
@@ -54,7 +54,7 @@ Storytellers from any part of the world can also register and publish story, and
 
 ## Note 
 1. You can create a new user account, login, write and publish stories.
-You can also copy user emails from the database, all password is defaulted to `password` 
+   You can also copy user emails from the database, all password is defaulted to `password` 
 2. You can also create an admin user by setting the table `type` to `admin`
 
 ## Library Used

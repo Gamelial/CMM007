@@ -10,7 +10,7 @@ Storytellers from any part of the world can also register and publish story, and
 
 ## Note 
 1. You can create a new user account, login, write and publish stories.
-You can also copy user emails from the database, all password is defaulted to `password` 
+   You can also copy user emails from the database, all password is defaulted to `password` 
 2. You can also create an admin user by setting the table `type` to `admin`
 
 ## Library Used
