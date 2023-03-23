@@ -1,64 +1,42 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Backend of G-story web
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a software application that enables story seekers to from all over the world to visit and read stories. 
+Storytellers from any part of the world can also register and publish story, and has an Admin with priviledge over all stories and storytellers' profile.
 
-## About Laravel
+## How to run application
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+We'll clone our repo by running these commands
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. `git clone repo_url` 
+2. `cd repoDir/back-end` 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Now that  we have cloned our repo and entered inside our backend directory, we'll set up our application 
 
-## Learning Laravel
+1. Make sure that your database service is running, 
+2. Create a new database and take note of the name.
+3. Locate the `.env` file in our project root, fill up the database section using the data from the new database that you created. 
+4. Run our migrations to prepare our database tables `php artisan migrate`
+5. Run the Database seed to generate test data for our application `php artisan db:seed`
+6. Link `storage` directory to `public`  by running `php artisan storage:link` 
+7. After Setting up your application environment, run `php artisan serve`  
+8. Take note of the url, this is what you'll use to connect to the endpoint from the Frontend.
+9. Access your database `story-teller` using phpmyadmin or any  other database client, on table `users`.
+10. You can create an admin user by creating a new user, and assigning the `type` as `admin`.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Setting up story-teller front end 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Clone git repo using `git clone repoUrl`
+2. `cd repoDir`
+3. Access `.env` file change VITE_APP_BASE_URL=`server_url_of_backend/api` 
+4. Run app, `npm run dev`
 
-## Laravel Sponsors
+## Note 
+1. You can create a new user account, login, write and publish stories.
+You can also copy user emails from the database, all password is defaulted to `password` 
+2. You can also create an admin user by setting the table `type` to `admin`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Library Used
+1. Php Laravel
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Database
+1. MysQl Database
